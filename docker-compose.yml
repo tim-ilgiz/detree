@@ -1,0 +1,39 @@
+version: '3.4'
+
+services:
+  detree:
+    image: ${DOCKER_REGISTRY-}detree
+    container_name: detreeapi
+    depends_on:
+      - dtpostgres
+    build:
+      context: .
+      dockerfile: src/detree/Dockerfile
+    ports:
+    - 5225:80
+    environment:
+      BS_ConnectionStrings__DefaultConnection: "host=dtpostgres;port=5432;database=dtdb;username=dtuser;password=dtpass"
+    networks:
+      - detreeapi-dev
+
+  dtpostgres:
+    image: postgres:latest
+    container_name: dtpostgres
+    ports:
+      - 5432:5432
+    restart: always
+    volumes:
+      - db_volume:/var/lib/postgresql/data      
+    environment:
+      POSTGRES_USER: "dtuser"
+      POSTGRES_PASSWORD: "dtpass"
+      POSTGRES_DB: "dtdb"
+    networks:
+      - detreeapi-dev
+
+volumes:
+  db_volume:
+
+networks:
+  detreeapi-dev:
+    driver: bridge 

@@ -6,10 +6,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["src/detree/detree.csproj", "src/detree/"]
-RUN dotnet restore "src/detree/detree.csproj"
+COPY ["detree/detree.csproj", "detree/"]
+RUN dotnet restore "detree/detree.csproj"
 COPY . .
-WORKDIR "/src/src/detree"
+WORKDIR "/src/detree"
 RUN dotnet build "detree.csproj" -c Release -o /app/build
 
 FROM build AS publish
