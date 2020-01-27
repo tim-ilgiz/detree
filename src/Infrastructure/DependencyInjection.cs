@@ -7,7 +7,9 @@ using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,10 +24,20 @@ namespace Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(
-                    configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseNpgsql(
+            //        configuration.GetConnectionString("DB_CONNECTION_STRING"),
+            //        b => b.MigrationsAssembly("detree")));
+
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseNpgsql(
+            //        configuration.GetConnectionString("DefaultConnection"),
+            //        b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.AddEntityFrameworkNpgsql().AddDbContext<ApplicationDbContext>(options =>
+                    options.UseNpgsql(configuration.GetConnectionString("DB_CONNECTION_STRING")));
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
@@ -41,7 +53,7 @@ namespace Infrastructure
                             ClientId = "detree.IntegrationTests",
                             AllowedGrantTypes = { GrantType.ResourceOwnerPassword },
                             ClientSecrets = { new Secret("secret".Sha256()) },
-                            AllowedScopes = { "detree.WebUIAPI", "openid", "profile" }
+                            AllowedScopes = { "detree.detree", "openid", "profile" }
                         });
                     }).AddTestUsers(new List<TestUser>
                     {
@@ -49,7 +61,7 @@ namespace Infrastructure
                         {
                             SubjectId = "f26da293-02fb-4c90-be75-e4aa51e0bb17",
                             Username = "tim.ilgiz@gmail.com",
-                            Password = "example!",
+                            Password = "89!Dm108",
                             Claims = new List<Claim>
                             {
                                 new Claim(JwtClaimTypes.Email, "tim.ilgiz@gmail.com")

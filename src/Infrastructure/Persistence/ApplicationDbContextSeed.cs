@@ -16,7 +16,7 @@ namespace Infrastructure.Persistence
 
             if (userManager.Users.All(u => u.Id != defaultUser.Id))
             {
-                await userManager.CreateAsync(defaultUser, "example!");
+                await userManager.CreateAsync(defaultUser, "89!Dm108");
             }
         }
     }

@@ -24,8 +24,8 @@ namespace Application.Cards.Queries
         public async Task<CardsListVm> Handle(GetCardsListQuery request, CancellationToken cancellationToken)
         {
             var cards = await _context.Cards
+                .Where(el => el.ParentId ==  request.ParentId)
                 .ProjectTo<CardDto>(_mapper.ConfigurationProvider)
-                .OrderBy(t => t.CardName)
                 .ToListAsync(cancellationToken);
             
             var vm = new CardsListVm 

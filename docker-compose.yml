@@ -12,7 +12,7 @@ services:
     ports:
     - 5225:80
     environment:
-      BS_ConnectionStrings__DefaultConnection: "host=dtpostgres;port=5432;database=dtdb;username=dtuser;password=dtpass"
+      DT_ConnectionStrings__DB_CONNECTION_STRING: "host=dtpostgres;port=5432;database=dtdb;username=dtuser;password=dtpass"
     networks:
       - detreeapi-dev
 

@@ -1,4 +1,11 @@
-﻿using System;
+﻿using Application.Common.Interfaces;
+using Domain.Entities;
+using IdentityServer4.EntityFramework.Options;
+using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Moq;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -40,16 +47,12 @@ namespace Application.UnitTests
 
         public static void SeedSampleData(ApplicationDbContext context)
         {
-            context.TodoLists.AddRange(
-                new TodoList { Id = 1, Title = "Shopping" }
+            context.Cards.AddRange(
+                new Card { Id = 1, CardName = "CardName" }
             );
 
-            context.TodoItems.AddRange(
-                new TodoItem { Id = 1, ListId = 1, Title = "Bread", Done = true },
-                new TodoItem { Id = 2, ListId = 1, Title = "Butter", Done = true },
-                new TodoItem { Id = 3, ListId = 1, Title = "Milk" },
-                new TodoItem { Id = 4, ListId = 1, Title = "Sugar" },
-                new TodoItem { Id = 5, ListId = 1, Title = "Coffee" }
+            context.Cards.AddRange(
+                new Card { Id = 1, CardName = "CardName1", Image = "Image1", ParentId = 2, Click = 1, LinkUrl = "LinkUrl1" }
             );
 
             context.SaveChanges();

@@ -28,6 +28,15 @@
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "publishAllPorts": true
+    },
+    "Local with Docker Compose": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "api/Card/id=1",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:5225"
     }
   }
 }
