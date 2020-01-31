@@ -14,20 +14,26 @@ using System.Threading.Tasks;
 
 namespace detree.Controllers
 {
-    [Authorize]
+    //[Authorize(Policy = "ApiReader")]
     public class CardController : ApiController
     {
-        [HttpGet("{id}")]
+        //[Authorize(Policy = "Admin")]
+        [HttpGet]
+        [Route(nameof(Get))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<CardsListVm>> Get(long id)
+        public async Task<ActionResult<CardsListVm>> Get(long ParentId)
         {
-            var vm = await Mediator.Send(new GetCardsListQuery { ParentId = id });
+            var vm = await Mediator.Send(new GetCardsListQuery { ParentId = ParentId });
 
             return Ok(vm);
         }
 
+        //[Authorize(Policy = "Admin")]
         [HttpPost]
+        [Route(nameof(Create))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Card>> Create([FromBody] CreateCardCommand command)
         {
             var card = await Mediator.Send(command);
@@ -35,9 +41,11 @@ namespace detree.Controllers
             return Ok(card);
         }
 
+        //[Authorize(Policy = "Admin")]
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesDefaultResponseType]
+        [Route(nameof(Update))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Update(UpdateCardCommand command)
         {
             var card = await Mediator.Send(command);
@@ -45,18 +53,9 @@ namespace detree.Controllers
             return Ok(card);
         }
 
+        //[Authorize(Policy = "Admin")]
         [HttpDelete]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesDefaultResponseType]
-        public async Task<IActionResult> Delete(DeleteCardCommand command)
-        {
-            var card = await Mediator.Send(command);
-
-            return Ok(card);
-        }
-
-        [HttpDelete("{id}")]
+        [Route(nameof(Delete))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(long id)

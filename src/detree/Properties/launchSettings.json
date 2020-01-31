@@ -32,7 +32,7 @@
     "Local with Docker Compose": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/Card/id=1",
+      "launchUrl": "api/Card/Get?ParentId=1",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

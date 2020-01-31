@@ -13,10 +13,11 @@ using System.Threading.Tasks;
 
 namespace detree.Controllers
 {
-    [Authorize]
+    //[Authorize(Policy = "ApiReader")]
     public class CategoryController : ApiController
     {
-        [HttpGet("{id}")]
+        //[Authorize(Policy = "Admin")]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<CategoriesListVm>> Get()
@@ -26,7 +27,10 @@ namespace detree.Controllers
             return Ok(vm);
         }
 
+        //[Authorize(Policy = "Admin")]
         [HttpPost]
+        [Route(nameof(Create))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult<Category>> Create([FromBody] CreateCategoryCommand command)
         {
             var card = await Mediator.Send(command);
@@ -34,9 +38,11 @@ namespace detree.Controllers
             return Ok(card);
         }
 
+        //[Authorize(Policy = "Admin")]
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesDefaultResponseType]
+        [Route(nameof(Update))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Update(UpdateCategoryCommand command)
         {
             var card = await Mediator.Send(command);
@@ -44,7 +50,9 @@ namespace detree.Controllers
             return Ok(card);
         }
 
-        [HttpDelete("{id}")]
+        //[Authorize(Policy = "Admin")]
+        [HttpDelete]
+        [Route(nameof(Delete))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(long id)

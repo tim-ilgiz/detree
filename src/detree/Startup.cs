@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Application;
 using Application.Common.Interfaces;
 using detree.Common;
-using detree.Services;
 using FluentValidation.AspNetCore;
 using Infrastructure;
 using Infrastructure.Persistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -38,7 +39,6 @@ namespace detree
         {
             services.AddApplication();
             services.AddInfrastructure(Configuration, Environment);
-            services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddHttpContextAccessor();
             services.AddHealthChecks()
                 .AddDbContextCheck<ApplicationDbContext>();
@@ -51,19 +51,20 @@ namespace detree
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
-
-            services.AddOpenApiDocument(configure =>
+            services.AddAuthentication(options =>
             {
-                configure.Title = "detree API";
-                configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
-                {
-                    Type = OpenApiSecuritySchemeType.ApiKey,
-                    Name = "Authorization",
-                    In = OpenApiSecurityApiKeyLocation.Header,
-                    Description = "Type into the textbox: Bearer {your JWT token}."
-                });
-
-                configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(o =>
+            {
+                o.Authority = "http://localhost:5225";
+                o.Audience = "resourceapi";
+                o.RequireHttpsMetadata = false;
+            });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ApiReader", policy => policy.RequireClaim("scope", "api.read"));
+                options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "admin"));
             });
         }
 
@@ -86,10 +87,6 @@ namespace detree
             app.UseHealthChecks("/health");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            //if (!env.IsDevelopment())
-            //{
-            //    app.UseSpaStaticFiles();
-            //}
 
             app.UseSwaggerUi3(settings =>
             {
@@ -98,9 +95,8 @@ namespace detree
             });
 
             app.UseRouting();
-
+            app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             app.UseAuthentication();
-            app.UseIdentityServer();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

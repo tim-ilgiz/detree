@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -17,7 +16,7 @@ namespace detree
 {
     public class Program
     {
-        public async static Task Main(string[] args)
+        public static void Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build();
 
@@ -29,10 +28,6 @@ namespace detree
                 {
                     var context = services.GetRequiredService<ApplicationDbContext>();
                     context.Database.Migrate();
-
-                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-
-                    await ApplicationDbContextSeed.SeedAsync(userManager);
                 }
                 catch (Exception ex)
                 {

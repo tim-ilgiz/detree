@@ -12,24 +12,19 @@ namespace Application.Common.Behaviours
     public class RequestLogger<TRequest> : IRequestPreProcessor<TRequest>
     {
         private readonly ILogger _logger;
-        private readonly ICurrentUserService _currentUserService;
-        private readonly IIdentityService _identityService;
 
-        public RequestLogger(ILogger<TRequest> logger, ICurrentUserService currentUserService, IIdentityService identityService)
+        public RequestLogger(ILogger<TRequest> logger)
         {
             _logger = logger;
-            _currentUserService = currentUserService;
-            _identityService = identityService;
         }
 
-        public async Task Process(TRequest request, CancellationToken cancellationToken)
+        public Task Process(TRequest request, CancellationToken cancellationToken)
         {
-            var requestName = typeof(TRequest).Name;
-            var userId = _currentUserService.UserId;
-            var userName = await _identityService.GetUserNameAsync(userId);
+            var name = typeof(TRequest).Name;
+            
+            _logger.LogInformation("Vidly Request: {Name} {@Request}", name, request);
 
-            _logger.LogInformation("example Request: {Name} {@UserId} {@UserName} {@Request}",
-                requestName, userId, userName, request);
+            return Task.CompletedTask;
         }
     }
 }
