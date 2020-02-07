@@ -13,10 +13,10 @@ using System.Threading.Tasks;
 
 namespace detree.Controllers
 {
-    //[Authorize(Policy = "ApiReader")]
+    [Authorize(Policy = "ApiReader")]
     public class CategoryController : ApiController
     {
-        //[Authorize(Policy = "Admin")]
+        [Authorize(Policy = "Admin")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

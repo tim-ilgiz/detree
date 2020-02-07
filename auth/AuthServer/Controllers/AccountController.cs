@@ -13,10 +13,11 @@ using AuthServer.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AuthServer.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : Controller 
     {
         private readonly SignInManager<AppUser> _signInManager;
         private readonly UserManager<AppUser> _userManager;

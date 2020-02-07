@@ -14,10 +14,10 @@ using System.Threading.Tasks;
 
 namespace detree.Controllers
 {
-    //[Authorize(Policy = "ApiReader")]
+    [Authorize(Policy = "ApiReader")]
     public class CardController : ApiController
     {
-        //[Authorize(Policy = "Admin")]
+        [Authorize(Policy = "Admin")]
         [HttpGet]
         [Route(nameof(Get))]
         [ProducesResponseType(StatusCodes.Status200OK)]

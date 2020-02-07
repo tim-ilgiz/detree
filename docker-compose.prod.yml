@@ -9,13 +9,11 @@ services:
     build:
       context: .
       dockerfile: src/detree/Dockerfile
-    ports:
-    - 5225:80
     environment:
-      ASPNETCORE_ENVIRONMENT": "Development"
-      DT_ConnectionStrings__DB_CONNECTION_STRING: "host=dtpostgres;port=5432;database=dtdb;username=dtuser;password=dtpass"
-    networks:
-      - detreeapi-dev
+      DT_ConnectionStrings__DB_CONNECTION_STRING: "host=45.84.224.59;port=5432;database=dtdb;username=dtuser;password=dtpass"
+      VIRTUAL_HOST: api.detree.ru
+      LETSENCRYPT_HOST: api.detree.ru
+      LETSENCRYPT_EMAIL: mail@detree.ru
 
   authserver:
     image: ${DOCKER_REGISTRY-}authserver
@@ -25,13 +23,11 @@ services:
     build:
       context: .
       dockerfile: auth/AuthServer/Dockerfile
-    ports:
-    - 5230:80
     environment:
-      ASPNETCORE_ENVIRONMENT": "Development"
-      AS_ConnectionStrings__DB_CONNECTION_STRING: "host=dtpostgres;port=5432;database=dtdb;username=dtuser;password=dtpass"
-    networks:
-      - detreeapi-dev
+      AS_ConnectionStrings__DB_CONNECTION_STRING: "host=45.84.224.59;port=5432;database=dtdb;username=dtuser;password=dtpass"
+      VIRTUAL_HOST: auth.detree.ru
+      LETSENCRYPT_HOST: auth.detree.ru
+      LETSENCRYPT_EMAIL: mail@detree.ru
 
   dtpostgres:
     image: postgres:latest
@@ -42,16 +38,14 @@ services:
     volumes:
       - db_volume:/var/lib/postgresql/data      
     environment:
-      ASPNETCORE_ENVIRONMENT": "Development"
       POSTGRES_USER: "dtuser"
       POSTGRES_PASSWORD: "dtpass"
       POSTGRES_DB: "dtdb"
-    networks:
-      - detreeapi-dev
 
 volumes:
   db_volume:
 
 networks:
-  detreeapi-dev:
-    driver: bridge 
+  default:
+    external:
+      name: webproxy 
