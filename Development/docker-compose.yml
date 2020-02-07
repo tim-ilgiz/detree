@@ -2,33 +2,31 @@ version: '3.4'
 
 services:
   detree:
-    image: ${DOCKER_REGISTRY-}detree
+    image: detree:latest
     container_name: detreeapi
     depends_on:
       - dtpostgres
     build:
-      context: .
+      context: ..
       dockerfile: src/detree/Dockerfile
     ports:
     - 5225:80
     environment:
-      ASPNETCORE_ENVIRONMENT": "Development"
       DT_ConnectionStrings__DB_CONNECTION_STRING: "host=dtpostgres;port=5432;database=dtdb;username=dtuser;password=dtpass"
     networks:
       - detreeapi-dev
 
   authserver:
-    image: ${DOCKER_REGISTRY-}authserver
+    image: authserver:latest
     container_name: authserver
     depends_on:
       - dtpostgres
     build:
-      context: .
+      context: ..
       dockerfile: auth/AuthServer/Dockerfile
     ports:
     - 5230:80
     environment:
-      ASPNETCORE_ENVIRONMENT": "Development"
       AS_ConnectionStrings__DB_CONNECTION_STRING: "host=dtpostgres;port=5432;database=dtdb;username=dtuser;password=dtpass"
     networks:
       - detreeapi-dev
