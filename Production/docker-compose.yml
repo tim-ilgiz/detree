@@ -7,7 +7,7 @@ services:
     depends_on:
       - dtpostgres
     build:
-      context: .
+      context: . .
       dockerfile: src/detree/Dockerfile
     environment:
       DT_ConnectionStrings__DB_CONNECTION_STRING: "host=45.84.224.59;port=5432;database=dtdb;username=dtuser;password=dtpass"
@@ -21,7 +21,7 @@ services:
     depends_on:
       - dtpostgres
     build:
-      context: .
+      context: . .
       dockerfile: auth/AuthServer/Dockerfile
     environment:
       AS_ConnectionStrings__DB_CONNECTION_STRING: "host=45.84.224.59;port=5432;database=dtdb;username=dtuser;password=dtpass"
