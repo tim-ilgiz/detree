@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   detree:
-    image: ${DOCKER_REGISTRY-}detree
+    image: detree:latest
     container_name: detreeapi
     depends_on:
       - dtpostgres
@@ -16,7 +16,7 @@ services:
       LETSENCRYPT_EMAIL: mail@detree.ru
 
   authserver:
-    image: ${DOCKER_REGISTRY-}authserver
+    image: authserver:latest
     container_name: authserver
     depends_on:
       - dtpostgres
