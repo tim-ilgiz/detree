@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'docker-compose -f docker-compose.yml -f docker-compose.prod.yml build -d'                              
+                sh 'docker-compose -f docker-compose.yml -f docker-compose.prod.yml build'                              
             }
         }
         stage('Deploy') {
