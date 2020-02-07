@@ -65,6 +65,7 @@ namespace detree
             {
                 options.AddPolicy("ApiReader", policy => policy.RequireClaim("scope", "api.read"));
                 options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "admin"));
+                options.AddPolicy("User", policy => policy.RequireClaim(ClaimTypes.Role, "user"));
             });
             services.AddSwaggerDocument();
         }
