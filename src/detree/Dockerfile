@@ -17,6 +17,10 @@ RUN dotnet build "detree.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "detree.csproj" -c Release -o /app/publish
 
+RUN apt update && \
+    apt install unzip && \
+    curl -sSL https://aka.ms/getvsdbgsh | /bin/sh /dev/stdin -v latest -l /vsdbg
+    
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
