@@ -1647,3 +1647,58 @@ System.InvalidOperationException: The view 'Error' was not found. The following 
 2020-02-06 23:54:21.718 +03:00 [INF] Removing 0 device flow codes
 2020-02-06 23:54:51.778 +03:00 [INF] Removing 0 grants
 2020-02-06 23:54:51.789 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:24:13.305 +03:00 [INF] Starting IdentityServer4 version 3.1.0.0
+2020-02-12 10:24:13.482 +03:00 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2020-02-12 10:24:14.729 +03:00 [WRN] Failed to determine the https port for redirect.
+2020-02-12 10:24:44.600 +03:00 [INF] Removing 0 grants
+2020-02-12 10:24:44.628 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:25:14.720 +03:00 [INF] Removing 0 grants
+2020-02-12 10:25:14.738 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:25:44.835 +03:00 [INF] Removing 0 grants
+2020-02-12 10:25:44.852 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:26:14.925 +03:00 [INF] Removing 0 grants
+2020-02-12 10:26:14.950 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:26:45.025 +03:00 [INF] Removing 0 grants
+2020-02-12 10:26:45.040 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:27:15.121 +03:00 [INF] Removing 0 grants
+2020-02-12 10:27:15.137 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:27:45.209 +03:00 [INF] Removing 0 grants
+2020-02-12 10:27:45.226 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:28:15.289 +03:00 [INF] Removing 0 grants
+2020-02-12 10:28:15.311 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:28:45.388 +03:00 [INF] Removing 0 grants
+2020-02-12 10:28:45.405 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:28:47.451 +03:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2020-02-12 10:28:47.454 +03:00 [WRN] Invalid HTTP request for token endpoint
+2020-02-12 10:29:15.487 +03:00 [INF] Removing 0 grants
+2020-02-12 10:29:15.507 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:29:45.570 +03:00 [INF] Removing 0 grants
+2020-02-12 10:29:45.585 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:30:15.674 +03:00 [INF] Removing 0 grants
+2020-02-12 10:30:15.693 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:30:45.775 +03:00 [INF] Removing 0 grants
+2020-02-12 10:30:45.795 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:31:15.870 +03:00 [INF] Removing 0 grants
+2020-02-12 10:31:15.888 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:31:45.955 +03:00 [INF] Removing 0 grants
+2020-02-12 10:31:45.976 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:32:16.039 +03:00 [INF] Removing 0 grants
+2020-02-12 10:32:16.055 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:32:46.119 +03:00 [INF] Removing 0 grants
+2020-02-12 10:32:46.137 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:33:16.254 +03:00 [INF] Removing 0 grants
+2020-02-12 10:33:16.271 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:33:46.337 +03:00 [INF] Removing 0 grants
+2020-02-12 10:33:46.355 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:34:16.438 +03:00 [INF] Removing 0 grants
+2020-02-12 10:34:16.453 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:34:46.522 +03:00 [INF] Removing 0 grants
+2020-02-12 10:34:46.542 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:35:16.605 +03:00 [INF] Removing 0 grants
+2020-02-12 10:35:16.622 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:35:46.698 +03:00 [INF] Removing 0 grants
+2020-02-12 10:35:46.715 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:36:16.789 +03:00 [INF] Removing 0 grants
+2020-02-12 10:36:16.804 +03:00 [INF] Removing 0 device flow codes
+2020-02-12 10:36:46.878 +03:00 [INF] Removing 0 grants
+2020-02-12 10:36:46.914 +03:00 [INF] Removing 0 device flow codes

@@ -1,0 +1,56 @@
+{
+    "configurations": [
+
+        // {
+        //     "name": "Docker .NET Core Launch",
+        //     "type": "docker",
+        //     "request": "launch",
+        //     "preLaunchTask": "docker-run: debug",
+        //     "netCore": {
+        //         "appProject": "${workspaceFolder}/auth/AuthServer/AuthServer.csproj"
+        //     }
+        // },
+        // {
+        //     "name": ".NET Core Docker Attach",
+        //     "type": "coreclr",
+        //     "request": "attach",
+        //     "processId": "${command:pickRemoteProcess}",
+        //     "pipeTransport": {
+        //         "pipeProgram": "docker",
+        //         "pipeArgs": [ "exec", "-i", "detree" ],
+        //         "debuggerPath": "/vsdbg/vsdbg",
+        //         "pipeCwd": "${workspaceRoot}",
+        //         "quoteArgs": false
+        //     }
+        // }
+        // {
+        //     "name": ".NET Core SSH Attach Detree",
+        //     "type": "coreclr",
+        //     "request": "attach",
+        //     "processId": "${command:pickRemoteProcess}",
+        //     "pipeTransport": {
+        //         "pipeProgram": "ssh",
+        //         "pipeArgs": [ "-T", "root@45.84.224.59" ],
+        //         "debuggerPath": "~/vsdbg/vsdbg",
+        //         "pipeCwd": "${workspaceRoot}",
+        //         "quoteArgs": true
+        //     },
+        //     "sourceFileMap": {
+        //         "/home/detree/detree": "${workspaceRoot}"
+        //     }
+        // },
+        {
+            "name": ".NET Core Docker Attach Detree",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickRemoteProcess}",
+            "pipeTransport": {
+                "pipeProgram": "docker",
+                "pipeArgs": [ "exec", "-i", "detreeapi" ],
+                "debuggerPath": "~/vsdbg/vsdbg",
+                "pipeCwd": "${workspaceRoot}",
+                "quoteArgs": false
+            }
+        }
+    ]
+}
