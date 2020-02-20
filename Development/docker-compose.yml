@@ -16,14 +16,14 @@ services:
     networks:
       - detreeapi-dev
 
-  authserver:
-    image: authserver:latest
-    container_name: authserver
+  identityserver:
+    image: identityserver:latest
+    container_name: identityserver
     depends_on:
       - dtpostgres
     build:
       context: ..
-      dockerfile: auth/AuthServer/Dockerfile
+      dockerfile: auth/IdentityServer/Dockerfile
     ports:
     - 5230:80
     environment:

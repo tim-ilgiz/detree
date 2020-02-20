@@ -10,7 +10,7 @@ namespace Application.Common.Interfaces
 {
     public interface IAppDbContext
     {
-        DbSet<Account> Cards { get; set; }
+        DbSet<Account> Accounts { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
