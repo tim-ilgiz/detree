@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace detree.Migrations
+namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200129211933_Initil")]
-    partial class Initil
+    [Migration("20200220072915_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,7 +70,9 @@ namespace detree.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("CategoryName")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");

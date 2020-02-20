@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Text;
+using Application.Authority;
 
 namespace Infrastructure.Authorities
 {
@@ -23,10 +24,10 @@ namespace Infrastructure.Authorities
             throw new NotImplementedException();
         }
 
-        public Claim[] OnVerify(Claim[] claims, JObject payload, string identifier, out bool valid)
+        public Claim[] OnVerify(Claim[] claims, Payload payload, string identifier, out bool valid)
         {
             valid = false;
-            var user = _repository.GetAccount(payload["username"].ToString(), payload["password"].ToString());
+            var user = _repository.GetAccount(payload.Username, payload.Password);
             if (user == null)
                 throw new KeyNotFoundException();
             valid = true;

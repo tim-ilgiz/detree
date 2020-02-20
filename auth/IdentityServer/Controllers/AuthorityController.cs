@@ -10,14 +10,10 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Authority;
 
 namespace IdentityServer.Controllers
 {
-    public class AuthorityModel
-    {
-        public JObject payload { get; set; }
-        public string token { get; set; }
-    }
 
     [Produces("application/json")]
     [Route("authority")]
@@ -27,10 +23,9 @@ namespace IdentityServer.Controllers
 
         public AuthorityController(ILogger<AuthorityController> logger, IAccountRepository authenticationRepository)
         {
-            CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
-            CancellationToken token = cancelTokenSource.Token;
+            var cancellationToken = new CancellationToken();
             //For testing purpose
-            authenticationRepository.InsertAccount("vee", "qwertyui", "+66821113334", out Guid guid, token);
+            authenticationRepository.InsertAccount("vee", "qwertyui", "+66821113334", out Guid guid, cancellationToken);
 
             _issuers = new Dictionary<string, AuthorityIssuer>()
             {
@@ -44,20 +39,20 @@ namespace IdentityServer.Controllers
         }
 
         [HttpPost("account")]
-        public IActionResult Account([FromBody] AuthorityModel model)
+        public IActionResult Account([FromBody]AuthorityModel model)
         {
             return Account("", model);
         }
 
         [HttpPost("account/{authority}")]
-        public IActionResult Account(string authority, [FromBody] AuthorityModel model)
+        public IActionResult Account(string authority, [FromBody]AuthorityModel model)
         {
-            if (model == null || model?.payload == null)
+            if (model == null || model?.Payload == null)
                 return Unauthorized();
             var authorities = _issuers["owner"].Authorities;
             if (!authorities.Any())
                 return Unauthorized();
-            string token = model.token;
+            string token = model.Token;
             if (string.IsNullOrWhiteSpace(authority))
             {
                 authority = authorities.Keys.ToArray()[0];
@@ -72,7 +67,7 @@ namespace IdentityServer.Controllers
                 try
                 {
                     var claimsIdentity = principle.Identity as ClaimsIdentity;
-                    var verifyResult = _issuers["owner"].Verify(authority, claimsIdentity.Claims.ToArray(), model.payload);
+                    var verifyResult = _issuers["owner"].Verify(authority, claimsIdentity.Claims.ToArray(), model.Payload);
                     if (verifyResult.Authority == null)
                         return Ok(new { auth_token = verifyResult.Token });
                     return Ok(new { verify_token = verifyResult.Token, authority = verifyResult.Authority, parameters = verifyResult.Payload });

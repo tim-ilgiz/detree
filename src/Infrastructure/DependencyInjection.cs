@@ -27,16 +27,7 @@ namespace Infrastructure
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
                     configuration.GetConnectionString("DB_CONNECTION_STRING"),
-                    b => b.MigrationsAssembly("detree")));
-
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseNpgsql(
-            //        configuration.GetConnectionString("DefaultConnection"),
-            //        b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-
-            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
-            //services.AddEntityFrameworkNpgsql().AddDbContext<ApplicationDbContext>(options =>
-            //        options.UseNpgsql(configuration.GetConnectionString("DB_CONNECTION_STRING")));
+                    b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());           

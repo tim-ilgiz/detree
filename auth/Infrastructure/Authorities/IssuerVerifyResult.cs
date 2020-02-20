@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using Application.Authority;
 
 namespace Infrastructure.Authorities
 {
@@ -44,7 +45,7 @@ namespace Infrastructure.Authorities
             _timeouts.Add(name, timeout);
         }
 
-        public IssuerVerifyResult Verify(string authority, Claim[] claims, JObject payload)
+        public IssuerVerifyResult Verify(string authority, Claim[] claims, Payload payload)
         {
             var verifyAuthority = _authorities[authority];
             var verifyClaims = verifyAuthority.OnVerify(claims, payload, _identifier, out bool valid);

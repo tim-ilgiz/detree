@@ -40,7 +40,6 @@ services:
     volumes:
       - db_volume:/var/lib/postgresql/data      
     environment:
-      ASPNETCORE_ENVIRONMENT": "Development"
       POSTGRES_USER: "dtuser"
       POSTGRES_PASSWORD: "dtpass"
       POSTGRES_DB: "dtdb"

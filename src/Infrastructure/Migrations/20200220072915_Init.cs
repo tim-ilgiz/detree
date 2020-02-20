@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace detree.Migrations
+namespace Infrastructure.Migrations
 {
-    public partial class Initil : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,7 +39,7 @@ namespace detree.Migrations
                     Created = table.Column<DateTime>(nullable: false),
                     LastModifiedBy = table.Column<string>(nullable: true),
                     LastModified = table.Column<DateTime>(nullable: true),
-                    CategoryName = table.Column<string>(nullable: true),
+                    CategoryName = table.Column<string>(maxLength: 200, nullable: false),
                     Parent = table.Column<long>(nullable: false),
                     Status = table.Column<string>(nullable: true)
                 },

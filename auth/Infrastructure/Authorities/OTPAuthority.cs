@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using Application.Authority;
 
 namespace Infrastructure.Authorities
 {
@@ -43,13 +44,13 @@ namespace Infrastructure.Authorities
             return generateOTPClaims(phone);
         }
 
-        public Claim[] OnVerify(Claim[] claims, JObject payload, string identifier, out bool valid)
+        public Claim[] OnVerify(Claim[] claims, Payload payload, string identifier, out bool valid)
         {
             valid = false;
             var id = claims.Single(c => c.Type == identifier).Value;
             var otpId = claims.Single(c => c.Type == "otp_id").Value;
             var hash = claims.Single(c => c.Type == "otp_hash").Value;
-            if (string.Format("{0}:{1}", otpId, payload["otp"].ToString()).Sha256() == hash)
+            if (string.Format("{0}:{1}", otpId, payload.Otp).Sha256() == hash)
             {
                 valid = true;
                 return new Claim[]
