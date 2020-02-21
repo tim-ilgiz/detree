@@ -3,7 +3,7 @@ using IdentityModel;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 using Infrastructure.Persistence;
-using Infrastructure.Services;
+using Infrastructure.Common.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;

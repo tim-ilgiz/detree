@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Infrastructure.Services
+namespace Infrastructure.Common.Services
 {
     public class DateTimeService : IDateTime
     {

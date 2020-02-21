@@ -19,7 +19,7 @@ namespace Infrastructure.Persistence
         {
             _dateTime = dateTime;
         }
-        public virtual DbSet<Account> Accounts { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

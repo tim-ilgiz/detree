@@ -1,6 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using Infrastructure.Persistence;
-using Infrastructure.Services;
+using Infrastructure.Common.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
