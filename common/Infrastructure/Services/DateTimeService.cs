@@ -1,7 +1,5 @@
-﻿using Application.Common.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using Application.Common.Interfaces;
 
 namespace Infrastructure.Common.Services
 {

@@ -1,23 +1,18 @@
-﻿using Application.Common.Interfaces;
-using Domain.Common;
-using Domain.Entities;
-using IdentityServer4.EntityFramework.Options;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
+﻿using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Common.Interfaces;
+using Application.Interfaces;
+using Domain.Common.Audit;
+using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence
 {
     public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
         private readonly IDateTime _dateTime;
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
             IDateTime dateTime)
             : base(options)
@@ -32,7 +27,6 @@ namespace Infrastructure.Persistence
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
-            {
                 switch (entry.State)
                 {
                     case EntityState.Added:
@@ -42,7 +36,6 @@ namespace Infrastructure.Persistence
                         entry.Entity.LastModified = _dateTime.Now;
                         break;
                 }
-            }
 
             return base.SaveChangesAsync(cancellationToken);
         }

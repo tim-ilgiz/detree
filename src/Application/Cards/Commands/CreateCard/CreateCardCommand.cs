@@ -1,11 +1,8 @@
-﻿using Application.Common.Interfaces;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Application.Interfaces;
 using Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Application.Cards.Commands.CreateCard
 {
@@ -30,6 +27,7 @@ namespace Application.Cards.Commands.CreateCard
             {
                 _context = context;
             }
+
             public async Task<Card> Handle(CreateCardCommand request, CancellationToken cancellationToken)
             {
                 var entity = new Card
@@ -49,6 +47,5 @@ namespace Application.Cards.Commands.CreateCard
                 return entity;
             }
         }
-       
     }
 }

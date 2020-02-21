@@ -1,11 +1,8 @@
-﻿using Application.Common.Interfaces;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Application.Interfaces;
 using Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Application.Categories.Commands.CreateCategory
 {
@@ -27,6 +24,7 @@ namespace Application.Categories.Commands.CreateCategory
             {
                 _context = context;
             }
+
             public async Task<Category> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
             {
                 var entity = new Category

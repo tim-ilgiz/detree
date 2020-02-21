@@ -1,23 +1,21 @@
-﻿using Application.Common.Interfaces;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Security.Claims;
-using System.Text;
 using Application.Authority;
+using Application.Common.Interfaces;
 
 namespace Infrastructure.Authorities
 {
     public class AccountAuthority : IAuthority
     {
-        private IAccountRepository _repository;
+        private readonly IAccountRepository _repository;
 
         public AccountAuthority(IAccountRepository repository)
         {
             _repository = repository;
         }
 
-        public string[] Payload => new string[] { "username", "password" };
+        public string[] Payload => new[] {"username", "password"};
 
         public Claim[] OnForward(Claim[] claims)
         {
@@ -31,10 +29,10 @@ namespace Infrastructure.Authorities
             if (user == null)
                 throw new KeyNotFoundException();
             valid = true;
-            return new Claim[]
+            return new[]
             {
-          new Claim(identifier, user.UserGuid.ToString()),
-          new Claim("phone", user.Phone)
+                new Claim(identifier, user.UserGuid.ToString()),
+                new Claim("phone", user.Phone)
             };
         }
     }

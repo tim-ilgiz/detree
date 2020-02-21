@@ -1,12 +1,9 @@
-﻿using Application.Common.Helpers;
-using Application.Common.Interfaces;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using Application.Authority;
+using Application.Common.Helpers;
+using Application.Common.Interfaces;
 
 namespace Infrastructure.Authorities
 {
@@ -19,21 +16,18 @@ namespace Infrastructure.Authorities
 
     public class AuthorityIssuer
     {
-        private string _identifier;
-        private IAuthenticator _authenticator;
-        private IDictionary<string, IAuthority> _authorities = new Dictionary<string, IAuthority>();
-        private IDictionary<string, int> _timeouts = new Dictionary<string, int>();
-
-        public IDictionary<string, IAuthority> Authorities
-        {
-            get { return _authorities; }
-        }
+        private readonly IAuthenticator _authenticator;
+        private readonly string _identifier;
+        private readonly IDictionary<string, int> _timeouts = new Dictionary<string, int>();
 
         public AuthorityIssuer(IAuthenticator authenticator, string identifier)
         {
             _authenticator = authenticator;
             _identifier = identifier;
         }
+
+        public IDictionary<string, IAuthority> Authorities { get; } = new Dictionary<string, IAuthority>();
+
         public static AuthorityIssuer Create(IAuthenticator authenticator, string identifier)
         {
             return new AuthorityIssuer(authenticator, identifier);
@@ -41,31 +35,29 @@ namespace Infrastructure.Authorities
 
         internal void Register(IAuthority authority, string name, int timeout)
         {
-            _authorities.Add(name, authority);
+            Authorities.Add(name, authority);
             _timeouts.Add(name, timeout);
         }
 
         public IssuerVerifyResult Verify(string authority, Claim[] claims, Payload payload)
         {
-            var verifyAuthority = _authorities[authority];
-            var verifyClaims = verifyAuthority.OnVerify(claims, payload, _identifier, out bool valid);
-            var authorities = _authorities.Values.ToList();
+            var verifyAuthority = Authorities[authority];
+            var verifyClaims = verifyAuthority.OnVerify(claims, payload, _identifier, out var valid);
+            var authorities = Authorities.Values.ToList();
             var idx = authorities.IndexOf(verifyAuthority);
 
-            if (idx < _authorities.Count - 1)
+            if (idx < Authorities.Count - 1)
             {
                 var nextAuthority = authorities[idx + 1];
                 var forwardClaims = new Claim[] { };
-                var forwardAuthority = _authorities.Keys.ElementAt(idx + 1);
+                var forwardAuthority = Authorities.Keys.ElementAt(idx + 1);
                 var forwardPayload = nextAuthority.Payload;
-                if (verifyClaims.Any())
-                {
-                    forwardClaims = nextAuthority.OnForward(verifyClaims);
-                }
+                if (verifyClaims.Any()) forwardClaims = nextAuthority.OnForward(verifyClaims);
                 if (valid)
                 {
-                    var verifyToken = JwtHelper.GenerateToken(verifyClaims.Concat(forwardClaims).ToArray(), _timeouts[authority]);
-                    return new IssuerVerifyResult()
+                    var verifyToken = JwtHelper.GenerateToken(verifyClaims.Concat(forwardClaims).ToArray(),
+                        _timeouts[authority]);
+                    return new IssuerVerifyResult
                     {
                         Token = verifyToken,
                         Authority = forwardAuthority,
@@ -79,7 +71,7 @@ namespace Infrastructure.Authorities
                 {
                     var identifier = verifyClaims.SingleOrDefault(c => c.Type == _identifier);
                     var authenticationClaims = _authenticator.GetAuthenticationClaims(identifier.Value);
-                    return new IssuerVerifyResult()
+                    return new IssuerVerifyResult
                     {
                         Token = JwtHelper.GenerateToken(authenticationClaims, _timeouts[authority]),
                         Authority = null,
@@ -87,8 +79,9 @@ namespace Infrastructure.Authorities
                     };
                 }
             }
+
             var token = JwtHelper.GenerateToken(verifyClaims, _timeouts[authority]);
-            return new IssuerVerifyResult()
+            return new IssuerVerifyResult
             {
                 Token = token,
                 Authority = authority,
@@ -99,7 +92,8 @@ namespace Infrastructure.Authorities
 
     public static class AuthorityIssuerExtension
     {
-        public static AuthorityIssuer Register(this AuthorityIssuer issuer, string name, IAuthority authority, int timeout = 60)
+        public static AuthorityIssuer Register(this AuthorityIssuer issuer, string name, IAuthority authority,
+            int timeout = 60)
         {
             issuer.Register(authority, name, timeout);
             return issuer;

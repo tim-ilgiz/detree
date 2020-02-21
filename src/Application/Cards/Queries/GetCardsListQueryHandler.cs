@@ -1,14 +1,11 @@
-﻿using Application.Common.Interfaces;
+﻿using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Application.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Application.Cards.Queries
 {
@@ -16,20 +13,22 @@ namespace Application.Cards.Queries
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
+
         public GetCardsListQueryHandler(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
+
         public async Task<CardsListVm> Handle(GetCardsListQuery request, CancellationToken cancellationToken)
         {
             var cards = await _context.Cards
-                .Where(el => el.ParentId ==  request.ParentId)
+                .Where(el => el.ParentId == request.ParentId)
                 .ProjectTo<CardDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
-            
-            var vm = new CardsListVm 
-            { 
+
+            var vm = new CardsListVm
+            {
                 Cards = cards
             };
 

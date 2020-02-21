@@ -1,13 +1,9 @@
-﻿using Application.Common.Interfaces;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using Application.Common.Interfaces;
 using Domain.Entities;
 using IdentityServer4.Models;
-using Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
@@ -22,13 +18,15 @@ namespace Infrastructure.Repositories
 
         public Account GetAccount(string username, string password)
         {
-            return _context.Accounts.SingleOrDefault(m => m.Username == username && m.EncryptedPassword == password.Sha256());
+            return _context.Accounts.SingleOrDefault(m =>
+                m.Username == username && m.EncryptedPassword == password.Sha256());
         }
 
-        public void InsertAccount(string username, string password, string phone, out Guid userGuid, CancellationToken cancellationToken)
+        public void InsertAccount(string username, string password, string phone, out Guid userGuid,
+            CancellationToken cancellationToken)
         {
             userGuid = Guid.NewGuid();
-            _context.Accounts.Add(new Account()
+            _context.Accounts.Add(new Account
             {
                 UserGuid = userGuid,
                 Username = username,

@@ -1,9 +1,6 @@
-﻿using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
+using Domain.Entities;
 
 namespace Application.Common.Interfaces
 {
@@ -11,6 +8,7 @@ namespace Application.Common.Interfaces
     {
         Account GetAccount(string username, string password);
 
-        void InsertAccount(string username, string password, string phone, out Guid userGuid, CancellationToken cancellationToken);
+        void InsertAccount(string username, string password, string phone, out Guid userGuid,
+            CancellationToken cancellationToken);
     }
 }

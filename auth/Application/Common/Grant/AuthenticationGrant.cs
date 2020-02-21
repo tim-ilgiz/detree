@@ -1,37 +1,17 @@
-﻿using Application.Common.Helpers;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
+using Application.Common.Helpers;
 using IdentityServer4.Models;
 using IdentityServer4.Validation;
-using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using static IdentityModel.OidcConstants;
 
 namespace Application.Common.Grant
 {
     public class AuthenticationGrant : IExtensionGrantValidator
     {
-        private static string authSecret = "authenticationsecret".Sha256();
+        private static readonly string authSecret = "authenticationsecret".Sha256();
 
         public string GrantType => "authentication";
-
-        internal string DeserializeAuthToken(string token)
-        {
-            var principle = JwtHelper.GetClaimsPrincipal(token);
-            if (principle == null)
-                return null;
-            var identity = principle.Identity as ClaimsIdentity;
-            if (identity == null)
-                return null;
-            if (!identity.IsAuthenticated)
-                return null;
-            var authKey = identity.FindFirst("auth_key").Value;
-            var authHash = identity.FindFirst("auth_hash").Value;
-            if (string.Format("{0}:{1}", authKey, authSecret).Sha256() == authHash)
-                return authKey;
-            return null;
-        }
 
         public Task ValidateAsync(ExtensionGrantValidationContext context)
         {
@@ -50,6 +30,23 @@ namespace Application.Common.Grant
             {
                 return Task.FromResult(context.Result);
             }
+        }
+
+        internal string DeserializeAuthToken(string token)
+        {
+            var principle = JwtHelper.GetClaimsPrincipal(token);
+            if (principle == null)
+                return null;
+            var identity = principle.Identity as ClaimsIdentity;
+            if (identity == null)
+                return null;
+            if (!identity.IsAuthenticated)
+                return null;
+            var authKey = identity.FindFirst("auth_key").Value;
+            var authHash = identity.FindFirst("auth_hash").Value;
+            if (string.Format("{0}:{1}", authKey, authSecret).Sha256() == authHash)
+                return authKey;
+            return null;
         }
     }
 }

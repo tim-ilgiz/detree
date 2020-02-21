@@ -1,13 +1,10 @@
-﻿using Application.Common.Interfaces;
-using IdentityServer4.Models;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using Application.Authority;
+using Application.Common.Interfaces;
+using IdentityServer4.Models;
+using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Authorities
 {
@@ -20,23 +17,7 @@ namespace Infrastructure.Authorities
             _logger = logger;
         }
 
-        public string[] Payload => new string[] { "otp" };
-
-        private Claim[] generateOTPClaims(string phone)
-        {
-            var digit = 4;
-            var otp = new Random().Next(0, (int)Math.Pow(10, digit) - 1).ToString("####");
-            var msg = string.Format("Phone number {0} OTP is {1}", phone, otp);
-            _logger.LogInformation(string.Format("\n{0}\n{1}\n{0}\n", new String('*', msg.Length), msg));
-            var sid = DateTime.Now.Ticks.ToString();
-
-            var hash = string.Format("{0}:{1}", sid, otp).Sha256();
-            return new Claim[]
-            {
-                new Claim("otp_id", sid),
-                new Claim("otp_hash", hash)
-            };
-        }
+        public string[] Payload => new[] {"otp"};
 
         public Claim[] OnForward(Claim[] claims)
         {
@@ -53,12 +34,29 @@ namespace Infrastructure.Authorities
             if (string.Format("{0}:{1}", otpId, payload.Otp).Sha256() == hash)
             {
                 valid = true;
-                return new Claim[]
+                return new[]
                 {
-                new Claim(identifier, id)
+                    new Claim(identifier, id)
                 };
             }
+
             throw new ArgumentException();
+        }
+
+        private Claim[] generateOTPClaims(string phone)
+        {
+            var digit = 4;
+            var otp = new Random().Next(0, (int) Math.Pow(10, digit) - 1).ToString("####");
+            var msg = string.Format("Phone number {0} OTP is {1}", phone, otp);
+            _logger.LogInformation(string.Format("\n{0}\n{1}\n{0}\n", new string('*', msg.Length), msg));
+            var sid = DateTime.Now.Ticks.ToString();
+
+            var hash = string.Format("{0}:{1}", sid, otp).Sha256();
+            return new[]
+            {
+                new Claim("otp_id", sid),
+                new Claim("otp_hash", hash)
+            };
         }
     }
 }

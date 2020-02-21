@@ -1,19 +1,15 @@
-﻿using Application.Common.Interfaces;
-using MediatR;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace Application.Common.Behaviours
 {
     public class RequestPerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
-        private readonly Stopwatch _timer;
         private readonly ILogger<TRequest> _logger;
+        private readonly Stopwatch _timer;
 
         public RequestPerformanceBehaviour(
             ILogger<TRequest> logger)
@@ -23,7 +19,8 @@ namespace Application.Common.Behaviours
             _logger = logger;
         }
 
-        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
+            RequestHandlerDelegate<TResponse> next)
         {
             _timer.Start();
 
@@ -37,7 +34,8 @@ namespace Application.Common.Behaviours
             {
                 var requestName = typeof(TRequest).Name;
 
-                _logger.LogWarning("example Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}",
+                _logger.LogWarning(
+                    "example Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}",
                     requestName, elapsedMilliseconds, request);
             }
 

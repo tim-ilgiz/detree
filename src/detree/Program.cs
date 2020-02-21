@@ -1,21 +1,18 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace detree
 {
     public class Program
     {
+        private const string ApplicationEnvironmentVariablesPrefix = "DT_";
+
         public static void Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build();
@@ -40,12 +37,12 @@ namespace detree
             host.Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration(
-                              (context, builder) => builder.AddEnvironmentVariables(prefix: ApplicationEnvironmentVariablesPrefix))
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            return WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration(
+                    (context, builder) => builder.AddEnvironmentVariables(ApplicationEnvironmentVariablesPrefix))
                 .UseStartup<Startup>();
-
-        const string ApplicationEnvironmentVariablesPrefix = "DT_";
+        }
     }
 }

@@ -1,10 +1,6 @@
 ﻿using Application.Common.Mappings;
 using AutoMapper;
 using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 
 namespace Application.Cards.Queries
 {
@@ -25,7 +21,7 @@ namespace Application.Cards.Queries
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Card, CardDto>()
-                .ForMember(dest => dest.ImageBase64, opt => opt.MapFrom(s => s.Image)); 
+                .ForMember(dest => dest.ImageBase64, opt => opt.MapFrom(s => s.Image));
         }
     }
 }

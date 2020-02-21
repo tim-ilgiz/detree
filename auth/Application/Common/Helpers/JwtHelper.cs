@@ -1,16 +1,14 @@
-﻿using IdentityServer4.Models;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
+using IdentityServer4.Models;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Application.Common.Helpers
 {
     public class JwtHelper
     {
-        private static string Secret = "jwtsecret".Sha256();
+        private static readonly string Secret = "jwtsecret".Sha256();
 
         public static string GenerateToken(Claim[] claims, int timeout)
         {
@@ -22,7 +20,8 @@ namespace Application.Common.Helpers
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = now.AddSeconds(timeout),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(symmetricKey), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(symmetricKey),
+                    SecurityAlgorithms.HmacSha256Signature)
             };
 
             var stoken = tokenHandler.CreateToken(tokenDescriptor);
@@ -40,7 +39,7 @@ namespace Application.Common.Helpers
                 return null;
 
             var symmetricKey = Convert.FromBase64String(Secret);
-            var validationParameters = new TokenValidationParameters()
+            var validationParameters = new TokenValidationParameters
             {
                 ClockSkew = TimeSpan.Zero,
                 RequireExpirationTime = true,
@@ -50,7 +49,7 @@ namespace Application.Common.Helpers
             };
             try
             {
-                return tokenHandler.ValidateToken(token, validationParameters, out SecurityToken securityToken);
+                return tokenHandler.ValidateToken(token, validationParameters, out var securityToken);
             }
             catch
             {

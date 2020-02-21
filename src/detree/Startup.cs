@@ -1,25 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using Application;
-using Application.Common.Interfaces;
-using detree.Common;
+using Application.Common.Exceptions;
+using Application.Interfaces;
 using FluentValidation.AspNetCore;
 using Infrastructure;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Logging;
-using NSwag;
-using NSwag.Generation.Processors.Security;
 
 namespace detree
 {
@@ -48,10 +40,7 @@ namespace detree
                 .AddNewtonsoftJson();
 
             // Customise default API behaviour
-            services.Configure<ApiBehaviorOptions>(options =>
-            {
-                options.SuppressModelStateInvalidFilter = true;
-            });
+            services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -91,12 +80,6 @@ namespace detree
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            //app.UseSwaggerUi3(settings =>
-            //{
-            //    settings.Path = "/api";
-            //    settings.DocumentPath = "/api/specification.json";
-            //});
-
             app.UseOpenApi();
             app.UseSwaggerUi3();
 
@@ -107,8 +90,8 @@ namespace detree
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                    "default",
+                    "{controller}/{action=Index}/{id?}");
             });
         }
     }

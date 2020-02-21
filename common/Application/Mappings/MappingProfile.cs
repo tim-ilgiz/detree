@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Reflection;
-using System.Text;
+using AutoMapper;
 
 namespace Application.Common.Mappings
 {
@@ -26,10 +24,9 @@ namespace Application.Common.Mappings
                 var instance = Activator.CreateInstance(type);
 
                 var methodInfo = type.GetMethod("Mapping")
-                    ?? type.GetInterface("IMapFrom`1").GetMethod("Mapping");
+                                 ?? type.GetInterface("IMapFrom`1").GetMethod("Mapping");
 
-                methodInfo?.Invoke(instance, new object[] { this });
-
+                methodInfo?.Invoke(instance, new object[] {this});
             }
         }
     }

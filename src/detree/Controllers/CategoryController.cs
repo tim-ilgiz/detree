@@ -1,4 +1,5 @@
-﻿using Application.Categories.Commands.CreateCategory;
+﻿using System.Threading.Tasks;
+using Application.Categories.Commands.CreateCategory;
 using Application.Categories.Commands.DeleteCategory;
 using Application.Categories.Commands.UpdateCategory;
 using Application.Categories.Queries;
@@ -6,10 +7,6 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace detree.Controllers
 {
@@ -61,7 +58,7 @@ namespace detree.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(long id)
         {
-            await Mediator.Send(new DeleteCategoryCommand { Id = id });
+            await Mediator.Send(new DeleteCategoryCommand {Id = id});
 
             return NoContent();
         }

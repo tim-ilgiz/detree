@@ -1,11 +1,7 @@
-﻿using Application.Common.Interfaces;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Application.Common.Behaviours
 {
@@ -21,7 +17,7 @@ namespace Application.Common.Behaviours
         public Task Process(TRequest request, CancellationToken cancellationToken)
         {
             var name = typeof(TRequest).Name;
-            
+
             _logger.LogInformation("Vidly Request: {Name} {@Request}", name, request);
 
             return Task.CompletedTask;

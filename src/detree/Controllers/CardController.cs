@@ -1,16 +1,12 @@
-﻿using Application.Cards.Commands.CreateCard;
+﻿using System.Threading.Tasks;
+using Application.Cards.Commands.CreateCard;
 using Application.Cards.Commands.DeleteCard;
 using Application.Cards.Commands.UpdateCard;
 using Application.Cards.Queries;
 using Domain.Entities;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace detree.Controllers
 {
@@ -25,7 +21,7 @@ namespace detree.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<CardsListVm>> Get(long ParentId)
         {
-            var vm = await Mediator.Send(new GetCardsListQuery { ParentId = ParentId });
+            var vm = await Mediator.Send(new GetCardsListQuery {ParentId = ParentId});
 
             return Ok(vm);
         }
@@ -64,7 +60,7 @@ namespace detree.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(long id)
         {
-            await Mediator.Send(new DeleteCardCommand { Id = id });
+            await Mediator.Send(new DeleteCardCommand {Id = id});
 
             return NoContent();
         }

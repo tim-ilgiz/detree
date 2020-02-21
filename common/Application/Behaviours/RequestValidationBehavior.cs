@@ -1,11 +1,9 @@
-﻿using FluentValidation;
-using MediatR;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation;
+using MediatR;
 
 namespace Application.Common.Behaviours
 {
@@ -19,7 +17,8 @@ namespace Application.Common.Behaviours
             _validators = validators;
         }
 
-        public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+        public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
+            RequestHandlerDelegate<TResponse> next)
         {
             var context = new ValidationContext(request);
 
@@ -29,10 +28,7 @@ namespace Application.Common.Behaviours
                 .Where(f => f != null)
                 .ToList();
 
-            if (failures.Count != 0)
-            {
-                throw new ValidationException(failures);
-            }
+            if (failures.Count != 0) throw new ValidationException(failures);
 
             return next();
         }
