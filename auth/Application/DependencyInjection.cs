@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using Application.Common.Behaviours;
+using Application.Interfaces.UseCases;
+using Application.UseCases;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,9 +13,9 @@ namespace Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+            services.AddTransient(typeof(IRegisterUserUseCase), typeof(RegisterUserUseCase));
+            services.AddTransient(typeof(ILoginUseCase), typeof(LoginUseCase));
+            services.AddTransient(typeof(IExchangeRefreshTokenUseCase), typeof(ExchangeRefreshTokenUseCase));
 
             return services;
         }

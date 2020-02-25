@@ -41,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Common", "commo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Common", "common\Infrastructure\Infrastructure.Common.csproj", "{6D2D6194-CCB5-400C-9EC0-AEA81A70C07F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Common", "common\Domain.Common\Domain.Common.csproj", "{DBE76976-9D72-4C9C-8EEA-C274C7653163}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Common", "common\Domain.Common\Domain.Common.csproj", "{DBE76976-9D72-4C9C-8EEA-C274C7653163}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
