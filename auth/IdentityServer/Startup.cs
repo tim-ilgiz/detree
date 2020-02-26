@@ -207,7 +207,7 @@ namespace IdentityServer
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "IdentityServer");
             });
-
+            app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             app.UseAuthentication();
             app.UseMvc();
         }
