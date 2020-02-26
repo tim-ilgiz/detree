@@ -8,10 +8,10 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["auth/IdentityServer/IdentityServer.csproj", "auth/IdentityServer/"]
-COPY ["auth/Infrastructure/Infrastructure.csproj", "auth/Infrastructure/"]
+COPY ["auth/Application/Application.csproj", "auth/Application/"]
 COPY ["common/Application/Application.Common.csproj", "common/Application/"]
 COPY ["auth/Domain/Domain.csproj", "auth/Domain/"]
-COPY ["auth/Application/Application.csproj", "auth/Application/"]
+COPY ["auth/Infrastructure/Infrastructure.csproj", "auth/Infrastructure/"]
 COPY ["common/Infrastructure/Infrastructure.Common.csproj", "common/Infrastructure/"]
 COPY ["common/Domain.Common/Domain.Common.csproj", "common/Domain.Common/"]
 RUN dotnet restore "auth/IdentityServer/IdentityServer.csproj"

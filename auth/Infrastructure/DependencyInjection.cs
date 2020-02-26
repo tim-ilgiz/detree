@@ -2,9 +2,9 @@
 using Application.Interfaces.Gateways.Repositories;
 using Application.Interfaces.Services;
 using Infrastructure.Auth;
-using Infrastructure.Common.Services;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
+using Infrastructure.Identity;
 using Infrastructure.Interfaces;
 using Infrastructure.Logging;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +28,11 @@ namespace Infrastructure
 
 
             services.AddDbContext<AppDbContext>(options =>
+                options.UseNpgsql(
+                    configuration.GetConnectionString("DB_CONNECTION_STRING"),
+                    b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
+
+            services.AddDbContext<AppIdentityDbContext>(options =>
                 options.UseNpgsql(
                     configuration.GetConnectionString("DB_CONNECTION_STRING"),
                     b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));

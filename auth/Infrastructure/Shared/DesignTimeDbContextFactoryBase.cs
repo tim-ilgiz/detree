@@ -34,12 +34,12 @@ namespace Infrastructure.Shared
 
             var config = builder.Build();
 
-            var connstr = config.GetConnectionString("Default");
+            var connstr = config.GetConnectionString("DB_CONNECTION_STRING");
 
             if (string.IsNullOrWhiteSpace(connstr))
             {
                 throw new InvalidOperationException(
-                    "Could not find a connection string named 'Default'.");
+                    "Could not find a connection string named 'DB_CONNECTION_STRING'.");
             }
             return Create(connstr);
         }

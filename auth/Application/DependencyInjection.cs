@@ -1,9 +1,7 @@
 ﻿using System.Reflection;
-using Application.Common.Behaviours;
 using Application.Interfaces.UseCases;
 using Application.UseCases;
 using AutoMapper;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application
