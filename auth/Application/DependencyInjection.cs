@@ -12,10 +12,10 @@ namespace Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {   
 
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddTransient(typeof(IRegisterUserUseCase), typeof(RegisterUserUseCase));
-            services.AddTransient(typeof(ILoginUseCase), typeof(LoginUseCase));
-            services.AddTransient(typeof(IExchangeRefreshTokenUseCase), typeof(ExchangeRefreshTokenUseCase));
+            
+            //services.AddTransient(typeof(IRegisterUserUseCase), typeof(RegisterUserUseCase));
+//            services.AddTransient(typeof(ILoginUseCase), typeof(LoginUseCase));
+//            services.AddTransient(typeof(IExchangeRefreshTokenUseCase), typeof(ExchangeRefreshTokenUseCase));
 
             return services;
         }
