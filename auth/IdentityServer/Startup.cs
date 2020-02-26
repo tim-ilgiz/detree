@@ -1,6 +1,8 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Application;
@@ -128,6 +130,7 @@ namespace IdentityServer
 
             services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Latest).AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
 
+            //services.AddScopedFromAssembly(Assembly.GetExecutingAssembly().FullName.EndsWith);
 
             services.AddSwaggerGen(c =>
             {
