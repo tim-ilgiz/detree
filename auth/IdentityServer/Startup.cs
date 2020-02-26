@@ -6,6 +6,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Application;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using FluentValidation.AspNetCore;
 using IdentityServer.Extensions;
 using IdentityServer.Models.Settings;
@@ -44,9 +47,10 @@ namespace IdentityServer
         public IWebHostEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddApplication();
+            //services.AddApplication();
+            
             services.AddInfrastructure(Configuration, Environment);
             // Add framework services.
 
@@ -129,9 +133,7 @@ namespace IdentityServer
             identityBuilder.AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
 
             services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Latest).AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
-
-            //services.AddScopedFromAssembly(Assembly.GetExecutingAssembly().FullName.EndsWith);
-
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TheCodeBuzz-Service", Version = "v1" });
@@ -163,6 +165,19 @@ namespace IdentityServer
                 });
 
             });
+            // Now register our services with Autofac container.
+            var builder = new ContainerBuilder();
+
+            builder.RegisterModule(new CoreModule());
+            builder.RegisterModule(new InfrastructureModule());
+
+            // Presenters
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).Where(t => t.Name.EndsWith("Presenter")).SingleInstance();
+
+            builder.Populate(services);
+            var container = builder.Build();
+            // Create the IServiceProvider based on the container.
+            return new AutofacServiceProvider(container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
