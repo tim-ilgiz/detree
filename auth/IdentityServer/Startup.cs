@@ -26,6 +26,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NLog;
@@ -50,7 +51,8 @@ namespace IdentityServer
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             //services.AddApplication();
-            
+            IdentityModelEventSource.ShowPII = true;
+
             services.AddInfrastructure(Configuration, Environment);
             // Add framework services.
 

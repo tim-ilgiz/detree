@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 
 namespace detree
 {
@@ -30,6 +31,7 @@ namespace detree
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            IdentityModelEventSource.ShowPII = true;
             services.AddApplication();
             services.AddInfrastructure(Configuration, Environment);
             services.AddHttpContextAccessor();
@@ -47,15 +49,15 @@ namespace detree
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(o =>
             {
-                o.Authority = "https://auth.detree.ru";
-                o.Audience = "resourceapi";
+                o.Authority = "http://localhost:5230";
+                o.Audience = "webApi";
                 o.RequireHttpsMetadata = false;
             });
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("ApiReader", policy => policy.RequireClaim("scope", "api.read"));
-                options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "admin"));
-                options.AddPolicy("User", policy => policy.RequireClaim(ClaimTypes.Role, "user"));
+                options.AddPolicy("ApiUser", policy => policy.RequireClaim("scope", "ApiUser"));
+                //options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "admin"));
+                //options.AddPolicy("User", policy => policy.RequireClaim(ClaimTypes.Role, "user"));
             });
             services.AddSwaggerDocument();
         }
