@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace detree.Controllers
 {
-    [Authorize(Policy = "ApiReader")]
+    [Authorize(Policy = "ApiUser")]
     public class CategoryController : ApiController
     {
         [Authorize(Policy = "Admin")]

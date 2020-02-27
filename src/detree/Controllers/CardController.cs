@@ -10,11 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace detree.Controllers
 {
-    [Authorize(Policy = "ApiReader")]
+    [Authorize(Policy = "ApiUser")]
     public class CardController : ApiController
     {
-        [Authorize(Policy = "Admin")]
-        [Authorize(Policy = "User")]
         [HttpGet]
         [Route(nameof(Get))]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -26,8 +24,6 @@ namespace detree.Controllers
             return Ok(vm);
         }
 
-        [Authorize(Policy = "Admin")]
-        [Authorize(Policy = "User")]
         [HttpPost]
         [Route(nameof(Create))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
