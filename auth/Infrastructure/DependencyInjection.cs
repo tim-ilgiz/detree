@@ -10,12 +10,7 @@ namespace Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services,
             IConfiguration configuration, IWebHostEnvironment environment)
-        {
-            //services.AddDbContext<AppIdentityDbContext>(options =>
-            //    options.UseNpgsql(
-            //        configuration.GetConnectionString("DB_CONNECTION_STRING"),
-            //        b => b.MigrationsAssembly(typeof(AppIdentityDbContext).Assembly.FullName)));
-
+        {    
             return services;
         }
     }
