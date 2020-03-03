@@ -1,8 +1,4 @@
-﻿using Application.Common.Mappings;
-using AutoMapper;
-using Domain.Entities;
-
-namespace Application.Categories.Queries
+﻿namespace Application.Categories.Queries
 {
     public class CategoryDto
     {

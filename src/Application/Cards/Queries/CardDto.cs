@@ -1,8 +1,4 @@
-﻿using Application.Common.Mappings;
-using AutoMapper;
-using Domain.Entities;
-
-namespace Application.Cards.Queries
+﻿namespace Application.Cards.Queries
 {
     public class CardDto
     {
