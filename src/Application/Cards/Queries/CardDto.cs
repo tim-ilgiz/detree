@@ -4,7 +4,7 @@ using Domain.Entities;
 
 namespace Application.Cards.Queries
 {
-    public class CardDto : IMapFrom<Card>
+    public class CardDto
     {
         public long Id { get; set; }
 
@@ -17,11 +17,5 @@ namespace Application.Cards.Queries
         public long ParentId { get; set; }
 
         public long Click { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            profile.CreateMap<Card, CardDto>()
-                .ForMember(dest => dest.ImageBase64, opt => opt.MapFrom(s => s.Image));
-        }
     }
 }

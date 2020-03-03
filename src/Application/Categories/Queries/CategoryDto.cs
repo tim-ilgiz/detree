@@ -4,7 +4,7 @@ using Domain.Entities;
 
 namespace Application.Categories.Queries
 {
-    public class CategoryDto : IMapFrom<Category>
+    public class CategoryDto
     {
         public long Id { get; set; }
 
@@ -13,10 +13,5 @@ namespace Application.Categories.Queries
         public long Parent { get; set; }
 
         public string Status { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            profile.CreateMap<Category, CategoryDto>();
-        }
     }
 }

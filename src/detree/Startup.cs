@@ -1,11 +1,10 @@
-using System.Security.Claims;
 using Application;
 using Application.Common.Exceptions;
 using Application.Interfaces;
+using AutoMapper;
 using FluentValidation.AspNetCore;
 using Infrastructure;
 using Infrastructure.Persistence;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -41,22 +40,6 @@ namespace detree
 
             // Customise default API behaviour
             services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(o =>
-            {
-                o.Authority = "https://auth.detree.ru";
-                o.Audience = "resourceapi";
-                o.RequireHttpsMetadata = false;
-            });
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("ApiReader", policy => policy.RequireClaim("scope", "api.read"));
-                options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "admin"));
-                options.AddPolicy("User", policy => policy.RequireClaim(ClaimTypes.Role, "user"));
-            });
             services.AddSwaggerDocument();
         }
 
@@ -85,8 +68,6 @@ namespace detree
 
             app.UseRouting();
             app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
-            app.UseAuthentication();
-            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
