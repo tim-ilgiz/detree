@@ -166,3 +166,196 @@ Npgsql.PostgresException (0x80004005): 42P01: relation "PersistedGrants" does no
 2020-03-03 23:18:19.281 +03:00 [ERR] Exception removing expired grants: 42P01: relation "PersistedGrants" does not exist
 2020-03-03 23:21:18.580 +03:00 [INF] Starting IdentityServer4 version 3.1.0.0
 2020-03-03 23:21:19.239 +03:00 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2020-03-04 11:51:39.064 +03:00 [INF] Starting IdentityServer4 version 3.1.0.0
+2020-03-04 11:51:39.208 +03:00 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2020-03-04 11:52:10.284 +03:00 [INF] Removing 0 grants
+2020-03-04 11:52:11.544 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 11:52:41.596 +03:00 [INF] Removing 0 grants
+2020-03-04 11:52:41.600 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 11:53:11.646 +03:00 [INF] Removing 0 grants
+2020-03-04 11:53:11.652 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 11:53:41.683 +03:00 [INF] Removing 0 grants
+2020-03-04 11:53:41.689 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 11:54:11.715 +03:00 [INF] Removing 0 grants
+2020-03-04 11:54:11.722 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 11:54:41.748 +03:00 [INF] Removing 0 grants
+2020-03-04 11:54:41.753 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 11:55:11.781 +03:00 [INF] Removing 0 grants
+2020-03-04 11:55:11.798 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 11:55:41.826 +03:00 [INF] Removing 0 grants
+2020-03-04 11:55:41.834 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 11:56:11.870 +03:00 [INF] Removing 0 grants
+2020-03-04 11:56:11.877 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 11:56:41.902 +03:00 [INF] Removing 0 grants
+2020-03-04 11:56:41.910 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 11:57:11.938 +03:00 [INF] Removing 0 grants
+2020-03-04 11:57:11.951 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 11:57:41.965 +03:00 [INF] Removing 0 grants
+2020-03-04 11:57:41.972 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 11:58:11.994 +03:00 [INF] Removing 0 grants
+2020-03-04 11:58:12.002 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 11:58:42.026 +03:00 [INF] Removing 0 grants
+2020-03-04 11:58:42.033 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 11:59:12.075 +03:00 [INF] Removing 0 grants
+2020-03-04 11:59:12.078 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 11:59:42.104 +03:00 [INF] Removing 0 grants
+2020-03-04 11:59:42.111 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 12:00:12.139 +03:00 [INF] Removing 0 grants
+2020-03-04 12:00:12.154 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 12:00:42.185 +03:00 [INF] Removing 0 grants
+2020-03-04 12:00:42.189 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 12:01:12.213 +03:00 [INF] Removing 0 grants
+2020-03-04 12:01:12.216 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 12:02:13.203 +03:00 [INF] Starting IdentityServer4 version 3.1.0.0
+2020-03-04 12:02:13.359 +03:00 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2020-03-04 12:02:44.369 +03:00 [INF] Removing 0 grants
+2020-03-04 12:02:44.383 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 12:04:03.246 +03:00 [INF] Starting IdentityServer4 version 3.1.0.0
+2020-03-04 12:04:03.423 +03:00 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2020-03-04 12:15:51.071 +03:00 [INF] Starting IdentityServer4 version 3.1.0.0
+2020-03-04 12:15:51.229 +03:00 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2020-03-04 12:20:33.313 +03:00 [INF] Starting IdentityServer4 version 3.1.0.0
+2020-03-04 12:20:33.484 +03:00 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2020-03-04 12:22:25.863 +03:00 [INF] Starting IdentityServer4 version 3.1.0.0
+2020-03-04 12:22:26.027 +03:00 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2020-03-04 12:22:57.062 +03:00 [INF] Removing 0 grants
+2020-03-04 12:22:57.075 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 12:23:27.122 +03:00 [INF] Removing 0 grants
+2020-03-04 12:23:27.128 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 12:25:53.644 +03:00 [INF] Starting IdentityServer4 version 3.1.0.0
+2020-03-04 12:25:53.796 +03:00 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2020-03-04 12:25:54.845 +03:00 [WRN] Failed to determine the https port for redirect.
+2020-03-04 12:26:56.488 +03:00 [ERR] The view 'Login' was not found. Searched locations: ["/Views/Account/Login.cshtml","/Views/Shared/Login.cshtml","/Pages/Shared/Login.cshtml"]
+2020-03-04 12:26:56.543 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The view 'Login' was not found. The following locations were searched:
+/Views/Account/Login.cshtml
+/Views/Shared/Login.cshtml
+/Pages/Shared/Login.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at IdentityServer4.Hosting.IdentityServerMiddleware.Invoke(HttpContext context, IEndpointRouter router, IUserSession session, IEventService events)
+   at IdentityServer4.Hosting.MutualTlsTokenEndpointMiddleware.Invoke(HttpContext context, IAuthenticationSchemeProvider schemes)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at IdentityServer4.Hosting.BaseUrlMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+2020-03-04 12:26:56.595 +03:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.InvalidOperationException: Invalid non-ASCII or control character in header: 0x000D
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpHeaders.ThrowInvalidHeaderCharacter(Char ch)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpHeaders.ValidateHeaderValueCharacters(StringValues headerValues)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpResponseHeaders.AddValueFast(String key, StringValues value)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpHeaders.System.Collections.Generic.IDictionary<System.String,Microsoft.Extensions.Primitives.StringValues>.Add(String key, StringValues value)
+   at Application.Extensions.HttpResponseExtensions.AddApplicationError(HttpResponse response, String message) in C:\ILGIZ\Study\detree\auth\Application\Extensions\HttpResponseExtensions.cs:line 12
+   at IdentityServer.Startup.<>c.<<Configure>b__10_3>d.MoveNext() in C:\ILGIZ\Study\detree\auth\IdentityServer\Startup.cs:line 93
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2020-03-04 12:26:56.598 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The view 'Login' was not found. The following locations were searched:
+/Views/Account/Login.cshtml
+/Views/Shared/Login.cshtml
+/Pages/Shared/Login.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at IdentityServer4.Hosting.IdentityServerMiddleware.Invoke(HttpContext context, IEndpointRouter router, IUserSession session, IEventService events)
+   at IdentityServer4.Hosting.MutualTlsTokenEndpointMiddleware.Invoke(HttpContext context, IAuthenticationSchemeProvider schemes)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at IdentityServer4.Hosting.BaseUrlMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-03-04 12:26:57.423 +03:00 [INF] Removing 0 grants
+2020-03-04 12:26:57.437 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 12:27:28.425 +03:00 [INF] Removing 0 grants
+2020-03-04 12:27:28.431 +03:00 [INF] Removing 0 device flow codes
+2020-03-04 12:27:51.500 +03:00 [ERR] The view 'Login' was not found. Searched locations: ["/Views/Account/Login.cshtml","/Views/Shared/Login.cshtml","/Pages/Shared/Login.cshtml"]
+2020-03-04 12:27:51.521 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The view 'Login' was not found. The following locations were searched:
+/Views/Account/Login.cshtml
+/Views/Shared/Login.cshtml
+/Pages/Shared/Login.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at IdentityServer4.Hosting.IdentityServerMiddleware.Invoke(HttpContext context, IEndpointRouter router, IUserSession session, IEventService events)
+   at IdentityServer4.Hosting.MutualTlsTokenEndpointMiddleware.Invoke(HttpContext context, IAuthenticationSchemeProvider schemes)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at IdentityServer4.Hosting.BaseUrlMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+2020-03-04 12:27:54.804 +03:00 [ERR] An exception was thrown attempting to execute the error handler.
+System.InvalidOperationException: Invalid non-ASCII or control character in header: 0x000D
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpHeaders.ThrowInvalidHeaderCharacter(Char ch)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpHeaders.ValidateHeaderValueCharacters(StringValues headerValues)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpResponseHeaders.AddValueFast(String key, StringValues value)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpHeaders.System.Collections.Generic.IDictionary<System.String,Microsoft.Extensions.Primitives.StringValues>.Add(String key, StringValues value)
+   at Application.Extensions.HttpResponseExtensions.AddApplicationError(HttpResponse response, String message) in C:\ILGIZ\Study\detree\auth\Application\Extensions\HttpResponseExtensions.cs:line 12
+   at IdentityServer.Startup.<>c.<<Configure>b__10_3>d.MoveNext() in C:\ILGIZ\Study\detree\auth\IdentityServer\Startup.cs:line 93
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2020-03-04 12:27:54.808 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The view 'Login' was not found. The following locations were searched:
+/Views/Account/Login.cshtml
+/Views/Shared/Login.cshtml
+/Pages/Shared/Login.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at IdentityServer4.Hosting.IdentityServerMiddleware.Invoke(HttpContext context, IEndpointRouter router, IUserSession session, IEventService events)
+   at IdentityServer4.Hosting.MutualTlsTokenEndpointMiddleware.Invoke(HttpContext context, IAuthenticationSchemeProvider schemes)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at IdentityServer4.Hosting.BaseUrlMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-03-04 12:27:58.452 +03:00 [INF] Removing 0 grants
+2020-03-04 12:27:58.463 +03:00 [INF] Removing 0 device flow codes

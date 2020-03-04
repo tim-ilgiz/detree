@@ -108,12 +108,17 @@ namespace IdentityServer
             }).AddSerilog(serilog.CreateLogger());
 
             app.UseStaticFiles();
-
             app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseIdentityServer();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
