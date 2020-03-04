@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using System.Net;
 using Application.Extensions;
+using Domain.Entities;
 using IdentityServer.Configuration;
 using Infrastructure;
 using Infrastructure.Identity;
@@ -49,11 +50,14 @@ namespace IdentityServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            AddDbContext(services);
             services.AddInfrastructure(Configuration, Environment);
             services.AddIdentity<AppUser, IdentityRole>()
-            .AddEntityFrameworkStores<AppIdentityDbContext>();
+            .AddEntityFrameworkStores<AppIdentityDbContext>()
+            .AddDefaultTokenProviders(); 
 
             var builder = services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
                 .AddOperationalStore(options =>
                 {
                     options.ConfigureDbContext = ConfigureDatabase;
@@ -64,16 +68,7 @@ namespace IdentityServer
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients())
                 .AddAspNetIdentity<AppUser>();
-
-            if (Environment.IsDevelopment())
-            {
-                builder.AddDeveloperSigningCredential();
-            }
-            else
-            {
-                throw new Exception("need to configure key material");
-            }
-
+            
             services.AddTransient<IProfileService, IdentityClaimsProfileService>();
             services.AddMvc(options => { options.EnableEndpointRouting = false; });
         }
@@ -119,11 +114,6 @@ namespace IdentityServer
             //app.UseHttpsRedirection();
 
             app.UseIdentityServer();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-            });
         }
     }
 }

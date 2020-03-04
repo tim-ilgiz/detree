@@ -60,6 +60,7 @@ namespace detree
                 //options.AddPolicy("User", policy => policy.RequireClaim(ClaimTypes.Role, "user"));
             });
             services.AddSwaggerDocument();
+            services.AddMvc(options => { options.EnableEndpointRouting = false; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,12 +90,6 @@ namespace detree
             app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    "default",
-                    "{controller}/{action=Index}/{id?}");
-            });
         }
     }
 }

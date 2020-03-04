@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Infrastructure.Identity.Constants
 {
-    class Roles
+    public static class Roles
     {
+        public const string User = "user";
     }
 }
