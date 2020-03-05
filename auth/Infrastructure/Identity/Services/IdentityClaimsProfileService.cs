@@ -10,6 +10,7 @@ using IdentityServer4;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
+using Infrastructure.Identity.Constants;
 using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Identity.Services
@@ -24,6 +25,7 @@ namespace Infrastructure.Identity.Services
             _userManager = userManager;
             _claimsFactory = claimsFactory;
         }
+
         public async Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
             var sub = context.Subject.GetSubjectId();
@@ -34,8 +36,8 @@ namespace Infrastructure.Identity.Services
             claims = claims.Where(claim => context.RequestedClaimTypes.Contains(claim.Type)).ToList();
             claims.Add(new Claim(JwtClaimTypes.GivenName, user.Name));
             claims.Add(new Claim(IdentityServerConstants.StandardScopes.Email, user.Email));
-
-            claims.Add(new Claim(ClaimTypes.Role, principal.Claims.First(c => c.Type == "role").Value));
+            // note: to dynamically add roles (ie. for users other than consumers - simply look them up by sub id
+            claims.Add(new Claim(ClaimTypes.Role, Roles.User)); // need this for role-based authorization - https://stackoverflow.com/questions/40844310/role-based-authorization-with-identityserver4
 
             context.IssuedClaims = claims;
         }

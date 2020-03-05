@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using IdentityServer4;
 using IdentityServer4.Models;
 
 namespace IdentityServer.Configuration
@@ -46,6 +47,7 @@ namespace IdentityServer.Configuration
                     AllowAccessTokensViaBrowser = true,
                     AccessTokenLifetime = 3600
                 }
+
             };
         }
     }
