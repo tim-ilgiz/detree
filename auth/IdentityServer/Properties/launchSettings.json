@@ -33,7 +33,7 @@
     "Local with Docker Compose": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "account",
+      "launchUrl": "account/login",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

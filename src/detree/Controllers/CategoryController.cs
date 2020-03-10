@@ -12,6 +12,7 @@ namespace detree.Controllers
 {
     public class CategoryController : ApiController
     {
+        [Authorize(Policy = "User")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -22,6 +23,7 @@ namespace detree.Controllers
             return Ok(vm);
         }
 
+        [Authorize(Policy = "User")]
         [HttpPost]
         [Route(nameof(Create))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -32,6 +34,7 @@ namespace detree.Controllers
             return Ok(card);
         }
 
+        [Authorize(Policy = "User")]
         [HttpPost]
         [Route(nameof(Update))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -43,6 +46,7 @@ namespace detree.Controllers
             return Ok(card);
         }
 
+        [Authorize(Policy = "User")]
         [HttpDelete]
         [Route(nameof(Delete))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

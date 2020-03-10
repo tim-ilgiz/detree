@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
 
 namespace detree
 {
@@ -29,6 +32,7 @@ namespace detree
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            IdentityModelEventSource.ShowPII = true;
             services.AddApplication();
             services.AddInfrastructure(Configuration, Environment);
             services.AddHttpContextAccessor();
@@ -40,7 +44,24 @@ namespace detree
 
             // Customise default API behaviour
             services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(o =>
+            {
+                o.Authority = "https://auth.detree.ru";
+                o.Audience = "resourceapi";
+                o.RequireHttpsMetadata = false;
+            });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ApiReader", policy => policy.RequireClaim("scope", "api.read"));
+                //options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "admin"));
+                options.AddPolicy("User", policy => policy.RequireClaim(ClaimTypes.Role, "user"));
+            });
             services.AddSwaggerDocument();
+            services.AddMvc(options => { options.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Latest);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,17 +84,11 @@ namespace detree
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseOpenApi();
             app.UseSwaggerUi3();
 
             app.UseRouting();
             app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    "default",
-                    "{controller}/{action=Index}/{id?}");
-            });
+            app.UseAuthentication();
         }
     }
 }

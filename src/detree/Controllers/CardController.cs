@@ -12,6 +12,7 @@ namespace detree.Controllers
 {
     public class CardController : ApiController
     {
+        [Authorize(Policy = "User")]
         [HttpGet]
         [Route(nameof(Get))]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -23,6 +24,7 @@ namespace detree.Controllers
             return Ok(vm);
         }
 
+        [Authorize(Policy = "User")]
         [HttpPost]
         [Route(nameof(Create))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -34,6 +36,7 @@ namespace detree.Controllers
             return Ok(card);
         }
 
+        [Authorize(Policy = "User")]
         [HttpPost]
         [Route(nameof(Update))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -45,6 +48,7 @@ namespace detree.Controllers
             return Ok(card);
         }
 
+        [Authorize(Policy = "User")]
         [HttpDelete]
         [Route(nameof(Delete))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
