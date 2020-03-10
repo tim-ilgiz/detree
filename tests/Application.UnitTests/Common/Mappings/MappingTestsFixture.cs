@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Application.Common.Mappings;
 using AutoMapper;
 
 namespace Application.UnitTests.Common.Mappings
@@ -12,7 +11,7 @@ namespace Application.UnitTests.Common.Mappings
         {
             ConfigurationProvider = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile<MappingProfile>();
+                cfg.AddProfile<Mapping.Mappings>();
             });
 
             Mapper = ConfigurationProvider.CreateMapper();

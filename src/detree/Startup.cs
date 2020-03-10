@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Application;
 using Application.Common.Exceptions;
 using Application.Interfaces;
@@ -5,6 +6,7 @@ using AutoMapper;
 using FluentValidation.AspNetCore;
 using Infrastructure;
 using Infrastructure.Persistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
