@@ -51,7 +51,7 @@ namespace detree
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(o =>
             {
-                o.Authority = "http://localhost:5230";
+                o.Authority = "https://auth.detree.ru";
                 o.Audience = "resourceapi";
                 o.RequireHttpsMetadata = false;
             });
