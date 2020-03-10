@@ -51,7 +51,6 @@ namespace IdentityServer
         public void ConfigureServices(IServiceCollection services)
         {
             AddDbContext(services);
-            services.AddInfrastructure(Configuration, Environment);
             services.AddIdentity<AppUser, IdentityRole>()
             .AddEntityFrameworkStores<AppIdentityDbContext>()
             .AddDefaultTokenProviders(); 
@@ -68,7 +67,6 @@ namespace IdentityServer
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients())
                 .AddAspNetIdentity<AppUser>();
-            
             services.AddTransient<IProfileService, IdentityClaimsProfileService>();
             services.AddMvc(options => { options.EnableEndpointRouting = false; });
         }

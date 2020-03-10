@@ -1,7 +1,8 @@
 using Domain.Entities;
-using Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 
 namespace Infrastructure.Persistence
 {
@@ -14,6 +15,11 @@ namespace Infrastructure.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<IdentityRole>()
+                .HasData(new IdentityRole
+                {
+                    Name = Identity.Constants.Roles.User, NormalizedName = Identity.Constants.Roles.User.ToUpper()
+                });
         }
     }
 }

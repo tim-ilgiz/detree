@@ -13,7 +13,6 @@ namespace detree.Controllers
     [Authorize(Policy = "ApiUser")]
     public class CategoryController : ApiController
     {
-        [Authorize(Policy = "Admin")]
         [Authorize(Policy = "User")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -25,7 +24,6 @@ namespace detree.Controllers
             return Ok(vm);
         }
 
-        [Authorize(Policy = "Admin")]
         [Authorize(Policy = "User")]
         [HttpPost]
         [Route(nameof(Create))]
@@ -37,7 +35,6 @@ namespace detree.Controllers
             return Ok(card);
         }
 
-        [Authorize(Policy = "Admin")]
         [Authorize(Policy = "User")]
         [HttpPost]
         [Route(nameof(Update))]
@@ -50,7 +47,6 @@ namespace detree.Controllers
             return Ok(card);
         }
 
-        [Authorize(Policy = "Admin")]
         [Authorize(Policy = "User")]
         [HttpDelete]
         [Route(nameof(Delete))]

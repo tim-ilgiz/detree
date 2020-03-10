@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 namespace detree
 {
@@ -57,7 +58,7 @@ namespace detree
             {
                 options.AddPolicy("ApiUser", policy => policy.RequireClaim("scope", "ApiUser"));
                 //options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "admin"));
-                //options.AddPolicy("User", policy => policy.RequireClaim(ClaimTypes.Role, "user"));
+                options.AddPolicy("User", policy => policy.RequireClaim(ClaimTypes.Role, "user"));
             });
             services.AddSwaggerDocument();
             services.AddMvc(options => { options.EnableEndpointRouting = false; });
