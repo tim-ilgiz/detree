@@ -107,21 +107,21 @@ namespace IdentityServer.Controllers
 
                 // issue authentication cookie with subject ID and username
                 await HttpContext.SignInAsync(user.Id, user.UserName, props);
-               
-
-                if (context != null)
-                {
-                    if (await _clientStore.IsPkceClientAsync(context.ClientId))
-                    {
-                        // if the client is PKCE then we assume it's native, so this change in how to
-                        // return the response is for better UX for the end user.
-                        return View("Redirect", new RedirectViewModel { RedirectUrl = model.ReturnUrl });
-                    }
-
-                    // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
-                    return Redirect(model.ReturnUrl);
-                }
                 return Redirect(model.ReturnUrl);
+
+                //if (context != null)
+                //{
+                //    if (await _clientStore.IsPkceClientAsync(context.ClientId))
+                //    {
+                //        // if the client is PKCE then we assume it's native, so this change in how to
+                //        // return the response is for better UX for the end user.
+                //        return View("Redirect", new RedirectViewModel { RedirectUrl = model.ReturnUrl });
+                //    }
+
+                //    // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
+                //    return Redirect(model.ReturnUrl);
+                //}
+
             }
 
             await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials"));
