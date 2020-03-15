@@ -59,7 +59,6 @@ namespace detree
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("ApiReader", policy => policy.RequireClaim("scope", "api.read"));
-                //options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "admin"));
                 options.AddPolicy("User", policy => policy.RequireClaim(ClaimTypes.Role, "user"));
             });
             services.AddSwaggerDocument();
@@ -83,7 +82,7 @@ namespace detree
 
             app.UseCustomExceptionHandler();
             app.UseHealthChecks("/health");
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseSwaggerUi3();
@@ -91,6 +90,7 @@ namespace detree
             app.UseRouting();
             app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             app.UseAuthentication();
+            app.UseMvc();
         }
     }
 }
