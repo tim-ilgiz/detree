@@ -42,31 +42,25 @@ namespace IdentityServer.Controllers
         /// Entry point into the login workflow
         /// </summary>
         [HttpGet]
-        public async Task<IActionResult> Login(string returnUrl)
+        public async Task<string> Login(string returnUrl)
         {
             // build a model so we know what to show on the login page
             var vm = await BuildLoginViewModelAsync(returnUrl);
 
-            if (vm.IsExternalLoginOnly)
-            {
-                // we only have one option for logging in and it's an external provider
-                return RedirectToAction("Challenge", "External", new { provider = vm.ExternalLoginScheme, returnUrl });
-            }
-
-            return Ok(vm);
+            return returnUrl;
         }
 
         /// <summary>
         /// Handle postback from username/password login
         /// </summary>
         [HttpPost]
-        public async Task<IActionResult> Login(LoginInputModel model, string button)
+        public async Task<IActionResult> Login([FromBody]LoginInputModel model)
         {
             // check if we are in the context of an authorization request
             var context = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
 
             //the user clicked the "cancel" button
-            if (button != "login")
+            if (model.ConfigInfo != "login")
             {
                 if (context != null)
                 {
@@ -107,20 +101,21 @@ namespace IdentityServer.Controllers
 
                 // issue authentication cookie with subject ID and username
                 await HttpContext.SignInAsync(user.Id, user.UserName, props);
-                return Redirect(model.ReturnUrl);
+                //return Redirect(model.ReturnUrl);
 
-                //if (context != null)
-                //{
-                //    if (await _clientStore.IsPkceClientAsync(context.ClientId))
-                //    {
-                //        // if the client is PKCE then we assume it's native, so this change in how to
-                //        // return the response is for better UX for the end user.
-                //        return View("Redirect", new RedirectViewModel { RedirectUrl = model.ReturnUrl });
-                //    }
+                if (context != null)
+                {
+                    if (await _clientStore.IsPkceClientAsync(context.ClientId))
+                    {
+                        // if the client is PKCE then we assume it's native, so this change in how to
+                        // return the response is for better UX for the end user.
+                        return View("Redirect", new RedirectViewModel { RedirectUrl = model.ReturnUrl });
+                    }
 
-                //    // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
-                //    return Redirect(model.ReturnUrl);
-                //}
+                    // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
+                    
+                    //return Redirect(model.ReturnUrl);
+                }
 
             }
 
@@ -129,7 +124,7 @@ namespace IdentityServer.Controllers
 
             // something went wrong, show form with error
             var vm = await BuildLoginViewModelAsync(model);
-            return Ok(vm);
+            return View(vm);
         }
 
 
