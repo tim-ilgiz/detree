@@ -39,18 +39,6 @@ namespace IdentityServer.Controllers
         }
 
         /// <summary>
-        /// Entry point into the login workflow
-        /// </summary>
-        [HttpGet]
-        public async Task<string> Login(string returnUrl)
-        {
-            // build a model so we know what to show on the login page
-            var vm = await BuildLoginViewModelAsync(returnUrl);
-
-            return returnUrl;
-        }
-
-        /// <summary>
         /// Handle postback from username/password login
         /// </summary>
         [HttpPost]
@@ -113,7 +101,6 @@ namespace IdentityServer.Controllers
                     }
 
                     // wedd can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
-                    
                     //return Redirect(model.ReturnUrl);
                 }
 
