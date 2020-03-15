@@ -112,7 +112,7 @@ namespace IdentityServer.Controllers
                         return View("Redirect", new RedirectViewModel { RedirectUrl = model.ReturnUrl });
                     }
 
-                    // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
+                    // wedd can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
                     
                     //return Redirect(model.ReturnUrl);
                 }
