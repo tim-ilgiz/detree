@@ -41,7 +41,7 @@ namespace IdentityServer.Configuration
                     ClientName = "Angular SPA",
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowedScopes = { "openid", "profile", "email", "api.read" },
-                    RedirectUris = {"https://detree.ru"},
+                    RedirectUris = {"https://detree.ru/auth-callback"},
                     PostLogoutRedirectUris = {"https://detree.ru/"},
                     AllowedCorsOrigins = {"https://detree.ru"},
                     AllowAccessTokensViaBrowser = true,
